@@ -46,7 +46,7 @@ System({
 });
 
 System({
-      pattern: '(yta|song)',
+      pattern: '(yta|play)',
       fromMe: isPrivate,
       type: 'download',
       desc: 'YouTube audio downloader'
@@ -69,7 +69,7 @@ System({
 });
 
 System({
-    pattern: 'play',
+    pattern: 'song',
     fromMe: isPrivate,
     desc: 'YouTube video player',
     type: 'download',
