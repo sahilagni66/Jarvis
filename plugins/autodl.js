@@ -10,7 +10,7 @@ Jarvis - Loki-Xer
 ------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
 
-const { System, isPrivate, spotifyMetaData, YtInfo, instaDL, config, pinDl, tiktokDl } = require("../lib/");
+const { System, isPrivate, spotifyMetaData, YtInfo, config, pinDl, tiktokDl } = require("../lib/");
 const { extractUrlsFromText, getJson, IronMan, platforms } = require("./client/");
 
 System({
@@ -47,13 +47,6 @@ System({
       if (!user || !rawRepo) return false;
       const repo = rawRepo.replace(/\.git$/, "");
       return await message.reply({ url: `https://api.github.com/repos/${user}/${repo}/zipball` }, { fileName: repo, mimetype: "application/zip" }, "document");
-    } else if (platform.name === "Instagram") {
-      const data = await instaDL(url);
-      if (!data || data.length === 0) return false;
-      for (const item of data) {
-        if (item) await message.sendFromUrl(item.url, { quoted: message.data });
-      };
-      return true;
     } else if (platform.name === "Twitter") {
       const data = await getJson(IronMan(`ironman/dl/x?url=${encodeURIComponent(url)}`));
       return await message.sendFromUrl(data.download);
@@ -90,3 +83,4 @@ System({
     console.log(error);
   };
 });
+    
